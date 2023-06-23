@@ -1,0 +1,26 @@
+//PROBLEM DESCRIPTION 
+You are given a very large integer n, represented as a string, and an integer digit x. The digits in n and the digit x are in the inclusive range [1, 9], and n may represent a negative number.
+You want to maximize n's numerical value by inserting x anywhere in the decimal representation of n. You cannot insert x to the left of the negative sign. Return a string representing the maximum value of n 
+after the insertion
+
+//SOLUTION
+for now, lets disregard negatives and boil the problem down into its
+most basic form, given a positive number n, and an integer x, where
+should we place x, in n, to generate the largest possible number.
+This seems like a greedy algorithm, so lets draw up a couple examples
+and try to find a simple rule they all follow.
+EX 1, 426, 9: the possible options are 9426,4926,4296,4269, obviously the largest being 9426. Lets try a couple more examples
+EX 2, 18, 5: options are 518, 158, 185, largest being 518.
+Just off of these two examples we see a pattern emerging, it seems
+that we want to inset our integer, before the first digit in our
+number that is smaller then said integer. Lets see if this pattern
+holds even if the number is negative.
+EX 3, -16, 2: options are -216, -126, -162. When our numbers are
+negative our pattern is incorrect, in fact it actually would return
+the smallest possible newly generated number, however, we can see thatif we simply invert our pattern, placing x before the first digit
+in n which is larger then x we generate a greedy algorithm that holds
+for negative values, thus giving us a solution to the problem through two different greedy algorithms:
+1) if the number is positive insert x before the first digit it is 
+larger then.
+2) if the number is negative insert x before the first digit it is
+smaller then.
